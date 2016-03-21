@@ -6,6 +6,7 @@
   },
   "files": [
     "app/journal-classes.ts",
-    "app/journal-interface.ts"
+    "app/journal-interface.ts",
+    "app/create-journal-entries.ts"
   ]
 }
