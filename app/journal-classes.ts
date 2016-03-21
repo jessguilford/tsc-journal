@@ -2,8 +2,10 @@
 module JournalApp {
   export class Entry {
     currentVotes: number;
+    id: number;
     constructor(public title: string, public content: string){
       this.currentVotes = 0;
+      this.id = new Date().valueOf();
     }
 
     charCount(){

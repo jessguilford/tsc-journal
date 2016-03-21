@@ -10,6 +10,7 @@ var JournalApp;
             this.title = title;
             this.content = content;
             this.currentVotes = 0;
+            this.id = new Date().valueOf();
         }
         Entry.prototype.charCount = function () {
             // Count some characters
@@ -35,12 +36,7 @@ var JournalApp;
     JournalApp.TextEntry = TextEntry;
 })(JournalApp || (JournalApp = {}));
 // to do: create module to wrap our Journal class, create actual journal class and objects, test upVote method, lots of other things.
-// jQuery and stuff goes here
-// var newTitle = "An Awesome Journal Entry";
-// var newContent = "This is a super cool journal entry. Wow! It's amazing.";
-//
-// testEntries.push(new JournalApp.TextEntry(newTitle, newContent));
-// console.log(testEntries);
+var testID = 0;
 $(document).ready(function () {
     $("#journalEntries").submit(function (event) {
         event.preventDefault();
@@ -48,22 +44,31 @@ $(document).ready(function () {
         var newTitle = $("#title").val();
         var newContent = $("#entry").val();
         testEntries.push(new JournalApp.TextEntry(newTitle, newContent));
-        console.log(testEntries);
         for (var _i = 0, testEntries_1 = testEntries; _i < testEntries_1.length; _i++) {
             var entry = testEntries_1[_i];
-            console.log(entry.title);
-        }
-        for (var _a = 0, testEntries_2 = testEntries; _a < testEntries_2.length; _a++) {
-            var entry = testEntries_2[_a];
-            $("#displayEntries").append("<li>" + entry.title + "</li><ul><li>" + entry.content + "</li></ul></li>");
+            var journalEntryInfo = getEntryInfo(entry);
+            $("#displayEntries").append(journalEntryInfo);
         }
     });
+    $(document).on("click", ".upvote", function (event) {
+        var testID = parseInt(this.id);
+        console.log(testID);
+        var gimme = findEntry(testID);
+        console.log(gimme);
+        var testEntry01 = testEntries.find(findEntry);
+        console.log(testEntry01);
+        // currently returning undefined
+    });
 });
+var findEntry = function (var01) {
+    console.log(var01);
+    return JournalApp.TextEntry.id === testID;
+};
 // hard coded stuff and variables go here
 /// <reference path="./journal-classes.ts"/>
 var testEntries = [];
-// testEntries.push(new JournalApp.TextEntry("An Awesome Journal Entry", "This is a super cool journal entry. Wow! It's amazing."));
-// console.log(testEntries);
-// testEntries[0].upVote();
-// testEntries[0].upVote();
-// console.log(testEntries[0]);
+var getEntryInfo = function (entry) {
+    var entryStuff = "<li>" + entry.title + "</li><ul><li>" + entry.content + "</li></ul><button class='upvote' id='" + entry.id + "'>Upvote</button></li>";
+    console.log(entry.id);
+    return entryStuff;
+};

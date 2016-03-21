@@ -2,8 +2,9 @@
 /// <reference path="./journal-classes.ts"/>
 
 var testEntries = [];
-// testEntries.push(new JournalApp.TextEntry("An Awesome Journal Entry", "This is a super cool journal entry. Wow! It's amazing."));
-// console.log(testEntries);
-// testEntries[0].upVote();
-// testEntries[0].upVote();
-// console.log(testEntries[0]);
+
+var getEntryInfo = function(entry) {
+  var entryStuff = "<li>" + entry.title + "</li><ul><li>" + entry.content + "</li></ul><button class='upvote' id='" + entry.id + "'>Upvote</button></li>";
+  console.log(entry.id);
+  return entryStuff;
+}
