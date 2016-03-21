@@ -52,23 +52,26 @@ $(document).ready(function () {
     });
     $(document).on("click", ".upvote", function (event) {
         var testID = parseInt(this.id);
-        console.log(testID);
-        var gimme = findEntry(testID);
-        console.log(gimme);
-        var testEntry01 = testEntries.find(findEntry);
-        console.log(testEntry01);
-        // currently returning undefined
+        var isMatched = matchID(testID);
+        console.log(testEntries);
     });
 });
-var findEntry = function (var01) {
-    console.log(var01);
-    return JournalApp.TextEntry.id === testID;
+var matchID = function (testID) {
+    for (var i = 0; i < testEntries.length; i++) {
+        var thisID = testEntries[i].id;
+        if (thisID === testID) {
+            testEntries[i].upVote();
+        }
+        else {
+            console.log("this one isn't the one we're matching");
+        }
+    }
 };
 // hard coded stuff and variables go here
 /// <reference path="./journal-classes.ts"/>
 var testEntries = [];
 var getEntryInfo = function (entry) {
     var entryStuff = "<li>" + entry.title + "</li><ul><li>" + entry.content + "</li></ul><button class='upvote' id='" + entry.id + "'>Upvote</button></li>";
-    console.log(entry.id);
+    //console.log(entry.id);
     return entryStuff;
 };

@@ -5,6 +5,6 @@ var testEntries = [];
 
 var getEntryInfo = function(entry) {
   var entryStuff = "<li>" + entry.title + "</li><ul><li>" + entry.content + "</li></ul><button class='upvote' id='" + entry.id + "'>Upvote</button></li>";
-  console.log(entry.id);
+  //console.log(entry.id);
   return entryStuff;
 }
